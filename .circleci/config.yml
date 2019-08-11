@@ -21,10 +21,14 @@ commands:
       - checkout
 
       - restore_cache:
-          key: v1-gems-{{ checksum "Gemfile.lock" }}
+          keys:
+            - v1-gems-{{ checksum "Gemfile.lock" }}
+            - v1-gems-
 
       - restore_cache:
-          key: v1-npm-{{ checksum "yarn.lock" }}
+          keys:
+            - v1-npm-{{ checksum "yarn.lock" }}
+            - v1-npm-
 
       - run:
           name: Install Ruby dependencies
