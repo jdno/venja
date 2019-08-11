@@ -1,0 +1,128 @@
+version: 2.1
+
+executors:
+  rails:
+    docker:
+      - image: circleci/ruby:2.6.3-node-browsers
+        environment:
+          BUNDLE_JOBS: 3
+          BUNDLE_RETRY: 3
+          BUNDLE_PATH: vendor/bundle
+          PGHOST: localhost
+          PGUSER: venja
+      - image: postgres:12-alpine
+        environment:
+          POSTGRES_USER: venja
+          POSTGRES_DB: venja_test
+
+commands:
+  setup:
+    steps:
+      - checkout
+
+      - restore_cache:
+          key: v1-gems-{{ checksum "Gemfile.lock" }}
+
+      - restore_cache:
+          key: v1-npm-{{ checksum "yarn.lock" }}
+
+      - run:
+          name: Install Ruby dependencies
+          command: bundle check || bundle install
+
+      - run:
+          name: Install JavaScript dependencies
+          command: yarn install --cache-folder .cache/yarn
+
+      - save_cache:
+          key: v1-gems-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+      - save_cache:
+          key: v1-npm-{{ checksum "yarn.lock" }}
+          paths:
+            - .cache/yarn
+
+jobs:
+  unit-tests:
+    executor: rails
+    steps:
+      - setup
+
+      - run:
+          name: Wait for database
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+
+      - run:
+          name: Setup the database
+          command: bundle exec rails db:setup
+
+      - run:
+          name: Run unit tests
+          command: bundle exec rails test
+
+  system-tests:
+    executor: rails
+    steps:
+      - setup
+
+      - run:
+          name: Wait for database
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+
+      - run:
+          name: Setup the database
+          command: bundle exec rails db:setup
+
+      - run:
+          name: Run unit tests
+          command: bundle exec rails test:system
+
+  rubocop:
+    executor: rails
+    steps:
+      - setup
+
+      - run:
+          name: RuboCop
+          command: bundle exec rubocop
+
+  brakeman:
+    executor: rails
+    steps:
+      - setup
+
+      - run:
+          name: Brakeman
+          command: bundle exec brakeman
+
+  prettier:
+    executor: rails
+    steps:
+      - setup
+
+      - run:
+          name: Prettier
+          command: yarn run prettier --check "app/**/*.js"
+
+  eslint:
+    executor: rails
+    steps:
+      - setup
+
+      - run:
+          name: ESLint
+          command: yarn run eslint "app/**/*.js"
+
+workflows:
+  version: 2
+
+  default:
+    jobs:
+      - brakeman
+      - eslint
+      - prettier
+      - rubocop
+      - system-tests
+      - unit-tests

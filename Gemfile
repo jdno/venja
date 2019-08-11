@@ -57,7 +57,8 @@ group :development do
 end
 
 group :test do
-  # Measure test coverage
+  # Measure test coverage and report it to CodeCov from CI
+  gem "codecov", require: false
   gem "simplecov", require: false
 
   # Adds support for Capybara system testing and selenium driver
