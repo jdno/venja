@@ -1,0 +1,84 @@
+require: rubocop-rails
+
+AllCops:
+  TargetRubyVersion: 2.6.3
+  DisplayCopNames: true
+  Exclude:
+    - bin/**/*
+    - db/**/*
+    - node_modules/**/*
+    - vendor/**/*
+
+Rails:
+  Enabled: true
+
+Layout/ClassStructure:
+  Enabled: true
+  Categories:
+    module_inclusion:
+      - include
+      - prepend
+      - extend
+    scopes:
+      - default_scope
+      - scope
+    attributes:
+      - attr_accessor
+      - attr_reader
+      - attr_writer
+      - attribute
+    associations:
+      - belongs_to
+      - has_many
+      - has_one
+    validations:
+      - validates
+      - validate
+    hooks:
+      - after_commit
+      - after_create
+      - after_destroy
+      - after_rollback
+      - after_save
+      - after_update
+      - after_validation
+      - around_create
+      - around_destroy
+      - around_save
+      - around_update
+      - before_create
+      - before_destroy
+      - before_save
+      - before_update
+      - before_validation
+  ExpectedOrder:
+    - module_inclusion
+    - scopes
+    - constants
+    - attributes
+    - associations
+    - validations
+    - hooks
+    - public_class_methods
+    - initializer
+    - public_methods
+    - protected_methods
+    - private_methods
+
+Metrics/BlockLength:
+  Exclude:
+    - config/**/*
+
+Metrics/LineLength:
+  Exclude:
+    - config/**/*
+
+Style/ClassAndModuleChildren:
+  Exclude:
+    - test/**/*
+
+Style/Documentation:
+  Enabled: false
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
