@@ -17,5 +17,8 @@ module Venja
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
+
+    # Stylesheets are generated through Webpack
+    config.generators.stylesheets = false
   end
 end
