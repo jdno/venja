@@ -1,0 +1,5 @@
+<div class="container mx-auto flex flex-col items-stretch px-2">
+  <% flash.each do |status, message| %>
+    <%= render partial: "shared/flash/#{status}", locals: { message: message } %>
+  <% end %>
+</div>
