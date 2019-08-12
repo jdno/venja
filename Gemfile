@@ -28,6 +28,9 @@ gem "jbuilder", "~> 2.7"
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.4.2", require: false
 
+# Authenticate users with email and password
+gem "clearance"
+
 gem "high_voltage"
 
 group :development, :test do

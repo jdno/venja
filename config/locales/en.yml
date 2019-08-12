@@ -32,6 +32,7 @@
 en:
   actions:
     login: Sign in
+    logout: Sign out
   pages:
     home:
       cta: Sign up for free
