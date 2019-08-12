@@ -1,5 +1,7 @@
 <nav class="bg-gradient flex items-center justify-between p-5">
-  <%= image_tag "venja.svg", class: "h-6" %>
+  <%= link_to root_path do %>
+    <%= image_tag "venja.svg", class: "h-6" %>
+  <% end %>
 
   <% if signed_in? %>
     <%= link_to t("actions.logout"), sign_out_path, method: :delete, class: "text-white hover:text-white font-bold no-underline hover:underline" %>
