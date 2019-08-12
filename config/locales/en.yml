@@ -32,3 +32,17 @@
 en:
   actions:
     login: Sign in
+  pages:
+    home:
+      cta: Sign up for free
+      feature1:
+        title: Simple & Beautiful
+        description:
+          Venja is a simple, beautifully designed habit tracker. Built to help
+          you achieve your goals.
+      feature2:
+        title: Free & Open Source
+        description_html:
+          Venja is a tool for everyone. It is free to use, and available as
+          <a href="https://github.com/jdno/venja" target="_blank">open source</a>.
+      title: Track what is important to you
