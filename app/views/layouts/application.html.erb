@@ -12,6 +12,7 @@
   <body data-controller="font-awesome">
     <%= render partial: "shared/navigation" %>
 
+    <%= render partial: "shared/flashes" unless flash.empty? %>
     <%= yield %>
   </body>
 </html>
