@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+DEFAULTS: &DEFAULTS
+  encrypted_password: <%= BCrypt::Password.create("password", cost: 4) %>
+  remember_token: <%= Clearance::Token.new %>
+
+user:
+  email: user@example.com
+  <<: *DEFAULTS
