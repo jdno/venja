@@ -2,7 +2,16 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-#navigation {
+a {
+  color: theme("colors.blue.500");
+  text-decoration: underline;
+}
+
+a:hover {
+  color: theme("colors.purple.700");
+}
+
+.bg-gradient {
   background-image: linear-gradient(
     to right,
     theme("colors.blue.500"),

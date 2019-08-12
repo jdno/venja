@@ -1,1 +1,28 @@
-<h1>Venja</h1>
+<div class="container mx-auto flex flex-col items-center">
+  <h1 class="font-bold text-xl md:text-4xl text-blue-500 mt-6 md:mt-16">
+    <%= t(".title") %>
+  </h1>
+
+  <%= image_tag "preview", class: "mt-6" %>
+
+  <div class="flex flex-wrap mt-2">
+    <div class="md:w-1/2 max-w-sm px-2 mt-4">
+      <h2 class="font-bold text-md md:text-lg text-blue-500">
+        <%= t(".feature1.title") %>
+      </h2>
+      <span>
+        <%= t(".feature1.description") %>
+      </span>
+    </div>
+    <div class="md:w-1/2 max-w-sm px-2 mt-4">
+      <h2 class="font-bold text-md md:text-lg text-blue-500">
+        <%= t(".feature2.title") %>
+      </h2>
+      <span>
+        <%= t(".feature2.description_html") %>
+      </span>
+    </div>
+  </div>
+
+  <%= link_to t(".cta"), root_path, class: "mt-6 md:mt-10 bg-blue-500 hover:bg-teal-500 font-bold no-underline text-white hover:text-white px-4 py-2 rounded" %>
+</div>
