@@ -31,6 +31,9 @@ gem "bootsnap", ">= 1.4.2", require: false
 # Authenticate users with email and password
 gem "clearance"
 
+# Authorize users with rules written in plain ol' Ruby
+gem "pundit"
+
 gem "high_voltage"
 
 group :development, :test do

@@ -3,7 +3,9 @@
 ENV["RAILS_ENV"] ||= "test"
 
 require "simplecov"
-SimpleCov.start "rails"
+SimpleCov.start "rails" do
+  add_group "Policies", "app/policies"
+end
 
 if ENV.fetch("CI", false)
   require "codecov"

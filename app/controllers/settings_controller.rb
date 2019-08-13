@@ -18,7 +18,7 @@ class SettingsController < ApplicationController
   private
 
   def set_settings
-    @settings = current_user.settings
+    @settings = authorize current_user.settings
   end
 
   def settings_params
