@@ -16,7 +16,7 @@ executors:
           POSTGRES_DB: venja_test
 
 commands:
-  setup:
+  code-setup:
     steps:
       - checkout
 
@@ -48,11 +48,11 @@ commands:
           paths:
             - .cache/yarn
 
-jobs:
-  unit-tests:
-    executor: rails
+  database-setup:
     steps:
-      - setup
+      - run:
+          name: Configure database connection
+          command: cp config/database.example.yml config/database.yml
 
       - run:
           name: Wait for database
@@ -61,6 +61,13 @@ jobs:
       - run:
           name: Setup the database
           command: bundle exec rails db:setup
+
+jobs:
+  unit-tests:
+    executor: rails
+    steps:
+      - code-setup
+      - database-setup
 
       - run:
           name: Run unit tests
@@ -69,15 +76,8 @@ jobs:
   system-tests:
     executor: rails
     steps:
-      - setup
-
-      - run:
-          name: Wait for database
-          command: dockerize -wait tcp://localhost:5432 -timeout 1m
-
-      - run:
-          name: Setup the database
-          command: bundle exec rails db:setup
+      - code-setup
+      - database-setup
 
       - run:
           name: Run unit tests
@@ -86,7 +86,7 @@ jobs:
   rubocop:
     executor: rails
     steps:
-      - setup
+      - code-setup
 
       - run:
           name: RuboCop
@@ -95,7 +95,7 @@ jobs:
   brakeman:
     executor: rails
     steps:
-      - setup
+      - code-setup
 
       - run:
           name: Brakeman
@@ -104,7 +104,7 @@ jobs:
   prettier:
     executor: rails
     steps:
-      - setup
+      - code-setup
 
       - run:
           name: Prettier
@@ -113,7 +113,7 @@ jobs:
   eslint:
     executor: rails
     steps:
-      - setup
+      - code-setup
 
       - run:
           name: ESLint
