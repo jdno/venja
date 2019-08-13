@@ -9,4 +9,16 @@ Rails.application.routes.draw do
   root to: "pages#show", id: "home"
 
   resource :settings, only: %i[edit update]
+
+  # Session management
+  resources :passwords, only: %i[create new]
+  resource :session, only: [:create]
+
+  resources :users, only: [:create] do
+    resource :password, only: %i[create edit update]
+  end
+
+  get "/sign_in" => "sessions#new", as: "sign_in"
+  get "/sign_up" => "users#new", as: "sign_up"
+  delete "/sign_out" => "sessions#destroy", as: "sign_out"
 end
