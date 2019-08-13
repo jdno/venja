@@ -48,4 +48,7 @@ Rails.application.configure do
 
   # Raises error for missing translations.
   config.action_view.raise_on_missing_translations = true
+
+  # Speed up integration tests with Clearance's backdoor
+  config.middleware.use Clearance::BackDoor
 end

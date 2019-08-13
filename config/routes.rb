@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   get "/pages/*id" => "pages#show", as: :page, format: false
 
   root to: "pages#show", id: "home"
+
+  resource :settings, only: %i[edit update]
 end
