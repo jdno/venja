@@ -80,5 +80,8 @@ Style/ClassAndModuleChildren:
 Style/Documentation:
   Enabled: false
 
+Style/EmptyMethod:
+  EnforcedStyle: expanded
+
 Style/StringLiterals:
   EnforcedStyle: double_quotes

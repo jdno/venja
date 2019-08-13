@@ -33,6 +33,9 @@ en:
   actions:
     login: Sign in
     logout: Sign out
+    save: Save
+  navigation:
+    settings: Settings
   pages:
     home:
       cta: Sign up for free
@@ -47,3 +50,7 @@ en:
           Venja is a tool for everyone. It is free to use, and available as
           <a href="https://github.com/jdno/venja" target="_blank">open source</a>.
       title: Track what is important to you
+  settings:
+    edit:
+      current_time: "Current time: %{time}."
+      title: Settings

@@ -21,6 +21,20 @@ class UserTest < ActiveSupport::TestCase
     assert user.reload.uuid
   end
 
+  test "creates settings for new users" do
+    user = User.create!(email: "new@example.com", password: "password")
+
+    assert user.reload.settings
+  end
+
+  test "destroys settings when destroying users" do
+    user = users :user
+
+    assert_difference ["User.count", "Settings.count"], -1 do
+      user.destroy!
+    end
+  end
+
   test "saves email in lower case" do
     user = users :user
 
