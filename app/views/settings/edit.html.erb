@@ -3,6 +3,13 @@
     <%= t(".title") %>
   </h1>
 
+  <div class="my-6 flex flex-col items-start">
+    <p>
+      <%= t(".password_reset_instructions") %>
+    </p>
+    <%= link_to t(".password_reset"), new_password_path, class: "mt-2 bg-blue-500 hover:bg-teal-500 font-bold no-underline text-white hover:text-white px-4 py-2 rounded" %>
+  </div>
+
   <%= form_with(model: @settings, url: settings_path, local: true) do |form| %>
     <div class="form-group">
       <%= form.label :time_zone, class: "block text-gray-700 text-sm font-bold mb-2" %>

@@ -53,4 +53,8 @@ en:
   settings:
     edit:
       current_time: "Current time: %{time}."
+      password_reset_instructions:
+        You can change your password by requesting a password reset. Click on
+        the button below and follow the instructions.
+      password_reset: Reset password
       title: Settings
