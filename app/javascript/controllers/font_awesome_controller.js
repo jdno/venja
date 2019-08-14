@@ -4,12 +4,23 @@ import {
   faCheckCircle,
   faExclamationCircle,
   faInfoCircle,
-  faTimes
+  faPencilAlt,
+  faPlus,
+  faTimes,
+  faTrashAlt
 } from "@fortawesome/free-solid-svg-icons";
 
 export default class extends Controller {
   initialize() {
-    library.add(faCheckCircle, faExclamationCircle, faInfoCircle, faTimes);
+    library.add(
+      faCheckCircle,
+      faExclamationCircle,
+      faInfoCircle,
+      faPencilAlt,
+      faPlus,
+      faTimes,
+      faTrashAlt
+    );
   }
 
   connect() {

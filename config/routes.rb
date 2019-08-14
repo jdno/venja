@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   root to: "pages#show", id: "home"
 
+  resources :habits, param: :uuid, except: %i[show]
   resource :settings, only: %i[edit update]
 
   # Session management

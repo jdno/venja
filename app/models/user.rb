@@ -3,7 +3,8 @@
 class User < ApplicationRecord
   include Clearance::User
 
-  has_one :settings, dependent: :destroy
+  has_many :habits,   dependent: :destroy
+  has_one  :settings, dependent: :destroy
 
   validates :email, presence: true, uniqueness: true
 

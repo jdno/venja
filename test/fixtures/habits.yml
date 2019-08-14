@@ -1,0 +1,16 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+journal:
+  uuid: <%= SecureRandom.uuid %>
+  user: user
+  name: Journal
+
+sleep:
+  uuid: <%= SecureRandom.uuid %>
+  user: user
+  name: Sleep
+
+cook:
+  uuid: <%= SecureRandom.uuid %>
+  user: someone
+  name: Cook
