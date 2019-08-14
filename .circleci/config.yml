@@ -16,7 +16,7 @@ executors:
           POSTGRES_DB: venja_test
 
 commands:
-  code-setup:
+  ruby-setup:
     steps:
       - checkout
 
@@ -25,23 +25,27 @@ commands:
             - v1-gems-{{ checksum "Gemfile.lock" }}
             - v1-gems-
 
+      - run:
+          name: Install Ruby dependencies
+          command: bundle check || bundle install
+
+      - save_cache:
+          key: v1-gems-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+  javascript-setup:
+    steps:
+      - checkout
+
       - restore_cache:
           keys:
             - v1-npm-{{ checksum "yarn.lock" }}
             - v1-npm-
 
       - run:
-          name: Install Ruby dependencies
-          command: bundle check || bundle install
-
-      - run:
           name: Install JavaScript dependencies
           command: yarn install --cache-folder .cache/yarn
-
-      - save_cache:
-          key: v1-gems-{{ checksum "Gemfile.lock" }}
-          paths:
-            - vendor/bundle
 
       - save_cache:
           key: v1-npm-{{ checksum "yarn.lock" }}
@@ -66,7 +70,8 @@ jobs:
   unit-tests:
     executor: rails
     steps:
-      - code-setup
+      - ruby-setup
+      - javascript-setup
       - database-setup
 
       - run:
@@ -76,7 +81,8 @@ jobs:
   system-tests:
     executor: rails
     steps:
-      - code-setup
+      - ruby-setup
+      - javascript-setup
       - database-setup
 
       - run:
@@ -86,7 +92,7 @@ jobs:
   rubocop:
     executor: rails
     steps:
-      - code-setup
+      - ruby-setup
 
       - run:
           name: RuboCop
@@ -95,7 +101,7 @@ jobs:
   brakeman:
     executor: rails
     steps:
-      - code-setup
+      - ruby-setup
 
       - run:
           name: Brakeman
@@ -104,7 +110,7 @@ jobs:
   prettier:
     executor: rails
     steps:
-      - code-setup
+      - javascript-setup
 
       - run:
           name: Prettier
@@ -113,7 +119,7 @@ jobs:
   eslint:
     executor: rails
     steps:
-      - code-setup
+      - javascript-setup
 
       - run:
           name: ESLint
