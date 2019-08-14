@@ -2,8 +2,13 @@
 
 DEFAULTS: &DEFAULTS
   encrypted_password: <%= BCrypt::Password.create("password", cost: 4) %>
-  remember_token: <%= Clearance::Token.new %>
 
 user:
-  email: user@example.com
   <<: *DEFAULTS
+  email: user@example.com
+  remember_token: <%= Clearance::Token.new %>
+
+someone:
+  <<: *DEFAULTS
+  email: someone@example.com
+  remember_token: <%= Clearance::Token.new %>

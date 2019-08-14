@@ -1,0 +1,25 @@
+<div class="container mx-auto max-w-md px-2">
+  <h1 class="font-bold text-xl md:text-4xl text-blue-500 my-6">
+    <%= t(".title") %>
+  </h1>
+
+  <% @habits.each do |habit| %>
+    <div class="flex items-center my-2">
+      <span class="flex-grow"><%= habit.name %></span>
+      <span>
+        <%= link_to edit_habit_path(habit), class: "text-sm no-underline" do %>
+          <i class="fas fa-pencil-alt text-xs"></i>
+          <%= t(".rename") %>
+        <% end %>
+      </span>
+      <span class="ml-6">
+        <%= link_to habit, method: :delete, data: { confirm: t("actions.confirm") }, class: "text-sm no-underline" do %>
+          <i class="fas fa-trash-alt text-xs"></i>
+          <%= t("actions.destroy") %>
+        <% end %>
+      </span>
+    </div>
+  <% end %>
+  <%= link_to t(".new"), new_habit_path, class: "no-underline" %>
+</div>
+

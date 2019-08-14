@@ -31,9 +31,20 @@
 
 en:
   actions:
+    confirm: Are you sure?
+    destroy: Delete
     login: Sign in
     logout: Sign out
     save: Save
+  habits:
+    edit:
+      title: Rename Habit
+    index:
+      new: Add a new habit...
+      rename: Rename
+      title: Habits
+    new:
+      title: New Habit
   navigation:
     settings: Settings
   pages:

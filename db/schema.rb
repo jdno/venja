@@ -10,11 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_13_083059) do
+ActiveRecord::Schema.define(version: 2019_08_14_110507) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
+
+  create_table "habits", force: :cascade do |t|
+    t.uuid "uuid", default: -> { "gen_random_uuid()" }, null: false
+    t.bigint "user_id", null: false
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id", "name"], name: "index_habits_on_user_id_and_name", unique: true
+    t.index ["user_id"], name: "index_habits_on_user_id"
+    t.index ["uuid"], name: "index_habits_on_uuid", unique: true
+  end
 
   create_table "settings", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -36,5 +47,6 @@ ActiveRecord::Schema.define(version: 2019_08_13_083059) do
     t.index ["remember_token"], name: "index_users_on_remember_token", unique: true
   end
 
+  add_foreign_key "habits", "users"
   add_foreign_key "settings", "users"
 end

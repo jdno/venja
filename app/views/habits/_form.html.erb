@@ -1,0 +1,10 @@
+<%= form_with(model: habit, local: true) do |form| %>
+  <div class="form-group">
+    <%= form.label :name, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_field :name, autofocus: true, class: "shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+
+  <div class="form-action mt-6">
+    <%= form.submit nil, class: "bg-blue-500 hover:bg-teal-500 font-bold no-underline text-white hover:text-white px-4 py-2 rounded" %>
+  </div>
+<% end %>
