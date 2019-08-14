@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   include Clearance::Controller
   include Pundit
 
+  before_action :require_login
   around_action :with_time_zone, if: :current_user
 
   # Raise errors during development when controllers actions miss authorization
