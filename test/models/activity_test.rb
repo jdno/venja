@@ -10,4 +10,9 @@ class ActivityTest < ActiveSupport::TestCase
   test "valid from the fixture" do
     assert @activity.valid?
   end
+
+  test "invalid without a performed_at date" do
+    @activity.performed_at = nil
+    assert_not @activity.valid?
+  end
 end

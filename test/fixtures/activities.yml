@@ -2,3 +2,4 @@
 
 sleep:
   habit: sleep
+  performed_at: <%= Time.zone.now.to_date %>
