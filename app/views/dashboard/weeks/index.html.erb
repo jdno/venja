@@ -1,0 +1,28 @@
+<div class="flex w-full justify-center px-2">
+  <div>
+    <h1 class="font-bold text-xl md:text-4xl text-blue-500 my-6">
+      <%= t(".title", week: Time.zone.now.to_date.cweek) %>
+    </h1>
+
+    <div class="flex flex-no-wrap mb-3">
+      <div class="flex-grow"></div>
+      <% (@query.start_date..@query.end_date).each do |date| %>
+        <div class="flex flex-col w-12 m-1 text-center">
+          <span class="text-lg font-bold"><%= date.strftime("%a") %><br/></span>
+          <span class="text-xs font-normal"><%= l(date, format: :short) %></span>
+        </div>
+      <% end %>
+    </div>
+
+    <% @query.all.each do |habit| %>
+      <div class="flex flex-no-wrap">
+        <div class="flex-grow font-bold mr-2 self-center">
+          <%= habit.name %>
+        </div>
+        <% (@query.start_date..@query.end_date).each do |date| %>
+          <div class="w-12 h-8 m-1 <%= habit.activities.map(&:performed_at).include?(date) ? "bg-green-400" : "bg-gray-400" %>"></div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

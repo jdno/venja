@@ -36,6 +36,10 @@ en:
     login: Sign in
     logout: Sign out
     save: Save
+  dashboard:
+    weeks:
+      index:
+        title: "Week %{week}"
   habits:
     edit:
       title: Rename Habit

@@ -1,7 +1,7 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-<% start_date = Time.zone.now.to_date.beginning_of_week %>
-<% end_date = start_date.end_of_week %>
+<% start_date = (Time.zone.now.to_date - 1.week).beginning_of_week %>
+<% end_date = Time.zone.now.to_date.end_of_week %>
 
 sleep:
   habit: sleep
