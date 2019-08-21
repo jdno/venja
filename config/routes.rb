@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   # see https://guides.rubyonrails.org/routing.html
 
   get "/pages/*id" => "pages#show", as: :page, format: false
+  get "/track" => "dashboard/weeks#index"
 
   root to: "pages#show", id: "home"
 
