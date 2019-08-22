@@ -36,6 +36,10 @@ en:
     login: Sign in
     logout: Sign out
     save: Save
+  activities:
+    create:
+      failure: Something went wrong. Try again.
+      success: Great job! 🎉
   dashboard:
     weeks:
       index:

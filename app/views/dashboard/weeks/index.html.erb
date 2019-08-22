@@ -20,7 +20,13 @@
           <%= habit.name %>
         </div>
         <% (@query.start_date..@query.end_date).each do |date| %>
-          <div class="w-12 h-8 m-1 <%= habit.activities.map(&:performed_at).include?(date) ? "bg-green-400" : "bg-gray-400" %>"></div>
+          <% activity = habit.activities.find { |act| act.performed_at == date } %>
+
+          <% if activity.present? %>
+            <%= link_to "", habit_activity_path(habit, activity), method: :delete, class: "w-12 h-8 m-1 bg-green-400 hover:bg-gray-400" %>
+          <% else %>
+            <%= link_to "", habit_activities_path(habit, activity: { performed_at: date }), method: :post, class: "w-12 h-8 m-1 bg-gray-400 hover:bg-green-400" %>
+          <% end %>
         <% end %>
       </div>
     <% end %>
