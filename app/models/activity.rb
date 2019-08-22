@@ -2,6 +2,7 @@
 
 class Activity < ApplicationRecord
   belongs_to :habit
+  has_one :user, through: :habit
 
   validates :performed_at, presence: true, uniqueness: { scope: :habit }
 
