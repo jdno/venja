@@ -5,6 +5,11 @@ journal:
   user: user
   name: Journal
 
+meditate:
+  uuid: <%= SecureRandom.uuid %>
+  user: user
+  name: Meditate
+
 sleep:
   uuid: <%= SecureRandom.uuid %>
   user: user

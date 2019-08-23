@@ -19,6 +19,6 @@ class WeeklyActivitiesQuery
     relation
       .includes(:activities)
       .order("habits.name ASC")
-      .where(activities: { performed_at: start_date..end_date })
+      .where(activities: { performed_at: [nil, start_date..end_date] })
   end
 end

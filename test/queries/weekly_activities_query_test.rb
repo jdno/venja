@@ -7,9 +7,9 @@ class WeeklyActivitiesQueryTest < ActiveSupport::TestCase
     @user = users :user
   end
 
-  test "without params returns habits with activities in the current week" do
-    query = WeeklyActivitiesQuery.new(Habit.where(user: @user))
-    assert_equal [habits(:journal), habits(:sleep)], query.all
+  test "without params returns habits in the current week" do
+    habits = WeeklyActivitiesQuery.new(Habit.where(user: @user)).all
+    assert_equal [habits(:journal), habits(:meditate), habits(:sleep)], habits
   end
 
   test "without params includes activities in the current week" do
