@@ -1,8 +1,18 @@
 <div class="flex w-full justify-center px-2">
   <div>
-    <h1 class="font-bold text-xl md:text-4xl text-blue-500 my-6">
-      <%= t(".title", week: @start_date.cweek) %>
-    </h1>
+    <div class="flex flex-row items-baseline">
+      <%= link_to track_url(date: @start_date - 1.week), id: "previous-week" do %>
+        <i class="fas fa-angle-left fa-2x"></i>
+      <% end %>
+
+      <h1 class="font-bold text-xl md:text-4xl text-blue-500 mx-3 my-6">
+        <%= t(".title", week: @start_date.cweek) %>
+      </h1>
+
+      <%= link_to track_url(date: @start_date + 1.week), id: "next-week" do %>
+        <i class="fas fa-angle-right fa-2x"></i>
+      <% end %>
+    </div>
 
     <div class="flex flex-no-wrap mb-3">
       <div class="flex-grow"></div>
