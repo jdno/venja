@@ -1,0 +1,13 @@
+<% if activity&.persisted? %>
+  <%= link_to "", habit_activity_path(habit, activity),
+              method: :delete,
+              data: { action: "activities#destroy", target: "activities.activity" },
+              class: "block w-full h-full bg-green-400 hover:bg-gray-400"
+  %>
+<% else %>
+  <%= link_to "", habit_activities_path(habit, activity: { performed_at: date }),
+              method: :post,
+              data: { action: "activities#create", target: "activities.activity" },
+              class: "block w-full h-full bg-gray-400 hover:bg-green-400"
+  %>
+<% end %>
