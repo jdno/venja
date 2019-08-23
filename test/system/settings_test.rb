@@ -9,15 +9,17 @@ class SettingsTest < ApplicationSystemTestCase
   end
 
   test "updating the settings" do
-    visit edit_settings_url(as: @user)
+    Timecop.freeze do
+      visit edit_settings_url(as: @user)
 
-    time_before = Time.zone.now.utc
-    assert_text I18n.l(time_before, format: :short)
+      time_before = Time.zone.now.utc
+      assert_text I18n.l(time_before, format: :short)
 
-    find("#settings_time_zone").find(:xpath, "option[2]").select_option
-    click_on "Save"
+      find("#settings_time_zone").find(:xpath, "option[2]").select_option
+      click_on "Save"
 
-    assert_text "Settings were successfully updated."
-    assert_text I18n.l(time_before - 11.hours, format: :short)
+      assert_text "Settings were successfully updated."
+      assert_text I18n.l(time_before - 11.hours, format: :short)
+    end
   end
 end

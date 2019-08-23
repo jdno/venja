@@ -62,6 +62,8 @@ group :development do
 end
 
 group :test do
+  gem "timecop"
+
   # Measure test coverage and report it to CodeCov from CI
   gem "codecov", require: false
   gem "simplecov", require: false

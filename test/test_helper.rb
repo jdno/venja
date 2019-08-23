@@ -12,6 +12,8 @@ if ENV.fetch("CI", false)
   SimpleCov.formatter = SimpleCov::Formatter::Codecov
 end
 
+Timecop.safe_mode = true
+
 require_relative "../config/environment"
 require "rails/test_help"
 
