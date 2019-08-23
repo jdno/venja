@@ -22,11 +22,9 @@
         <% (@query.start_date..@query.end_date).each do |date| %>
           <% activity = habit.activities.find { |act| act.performed_at == date } %>
 
-          <% if activity.present? %>
-            <%= link_to "", habit_activity_path(habit, activity), method: :delete, class: "w-12 h-8 m-1 bg-green-400 hover:bg-gray-400" %>
-          <% else %>
-            <%= link_to "", habit_activities_path(habit, activity: { performed_at: date }), method: :post, class: "w-12 h-8 m-1 bg-gray-400 hover:bg-green-400" %>
-          <% end %>
+          <div data-controller="activities" data-target="activities.grid" class="w-12 h-8 m-1">
+            <%= render partial: "dashboard/weeks/activity", locals: { activity: activity, habit: habit, date: date } %>
+          </div>
         <% end %>
       </div>
     <% end %>
