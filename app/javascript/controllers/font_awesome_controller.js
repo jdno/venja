@@ -1,6 +1,8 @@
 import { Controller } from "stimulus";
 import { library, dom } from "@fortawesome/fontawesome-svg-core";
 import {
+  faAngleLeft,
+  faAngleRight,
   faCheckCircle,
   faExclamationCircle,
   faInfoCircle,
@@ -13,6 +15,8 @@ import {
 export default class extends Controller {
   initialize() {
     library.add(
+      faAngleLeft,
+      faAngleRight,
       faCheckCircle,
       faExclamationCircle,
       faInfoCircle,

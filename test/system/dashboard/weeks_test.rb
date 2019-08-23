@@ -29,4 +29,18 @@ class Dashboard::WeeksTest < ApplicationSystemTestCase
       page.first('a[data-action="activities#destroy"]').click
     end
   end
+
+  test "go back a week" do
+    visit track_url(as: @user)
+
+    click_on "previous-week"
+    assert_text "Week #{(Time.zone.now - 1.week).to_date.cweek}"
+  end
+
+  test "go forward a week" do
+    visit track_url(as: @user)
+
+    click_on "next-week"
+    assert_text "Week #{(Time.zone.now + 1.week).to_date.cweek}"
+  end
 end
