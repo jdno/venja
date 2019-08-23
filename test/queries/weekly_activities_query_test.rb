@@ -24,4 +24,18 @@ class WeeklyActivitiesQueryTest < ActiveSupport::TestCase
 
     assert_equal weekly_activities, query.all.first.activities
   end
+
+  test "with params includes activities in the given week" do
+    start_date = Date.parse("2019-01-01").beginning_of_week
+
+    habit = habits :journal
+    activity = Activity.create! habit: habit, performed_at: start_date
+
+    query = WeeklyActivitiesQuery.new(
+      Habit.where(id: habit.id),
+      start_date: start_date
+    )
+
+    assert_equal [activity], query.all.first.activities
+  end
 end

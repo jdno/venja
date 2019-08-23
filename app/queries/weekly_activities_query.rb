@@ -3,8 +3,9 @@
 class WeeklyActivitiesQuery
   attr_reader :relation
 
-  def initialize(relation)
+  def initialize(relation, start_date: nil)
     @relation = relation
+    @start_date = start_date
   end
 
   def start_date
