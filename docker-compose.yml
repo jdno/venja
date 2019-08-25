@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  venja:
+    build: .
+    image: venja:latest
+    environment:
+      DATABASE_URL: postgres://venja@postgres/venja_development
+    links:
+      - postgres
+    ports:
+      - 3000:3000
+  postgres:
+    image: postgres:12-alpine
+    environment:
+      POSTGRES_USER: venja
+      POSTGRES_DB: venja_development
