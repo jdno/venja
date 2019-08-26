@@ -56,6 +56,7 @@ en:
       title: New Habit
   navigation:
     settings: Settings
+    track: Dashboard
   pages:
     home:
       cta: Sign up for free
