@@ -1,0 +1,3 @@
+ignored_endpoints:
+  - OkComputer::OkComputer#index
+  - OkComputer::OkComputer#show
