@@ -5,7 +5,8 @@
 
   <div>
     <% if signed_in? %>
-      <%= link_to t("navigation.settings"), edit_settings_path, class: "text-white hover:text-white font-bold no-underline hover:underline" %>
+      <%= link_to t("navigation.track"), track_path, class: "text-white hover:text-white font-bold no-underline hover:underline" %>
+      <%= link_to t("navigation.settings"), edit_settings_path, class: "ml-2 text-white hover:text-white font-bold no-underline hover:underline" %>
       <%= link_to t("actions.logout"), sign_out_path, method: :delete, class: "ml-2 text-white hover:text-white font-bold no-underline hover:underline" %>
     <% else %>
       <%= link_to t("actions.login"), sign_in_path, class: "text-white hover:text-white font-bold no-underline hover:underline" %>
