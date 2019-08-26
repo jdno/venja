@@ -16,6 +16,9 @@ gem "puma", "~> 4.1"
 # Monitor the performance with Skylight
 gem "skylight"
 
+# Track errors on honeybadger.io
+gem "honeybadger", "~> 4.0"
+
 # Transpile app-like JavaScript.
 # Read more: https://github.com/rails/webpacker
 gem "webpacker", "~> 4.0"
