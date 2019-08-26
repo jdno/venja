@@ -7,25 +7,28 @@ class WeeklyActivitiesQueryTest < ActiveSupport::TestCase
     @user = users :user
   end
 
-  test "without params returns habits in the current week" do
-    habits = WeeklyActivitiesQuery.new(Habit.where(user: @user)).all
+  test "#habits without params returns all habits" do
+    habits = WeeklyActivitiesQuery.new(Habit.where(user: @user)).habits
     assert_equal [habits(:journal), habits(:meditate), habits(:sleep)], habits
   end
 
-  test "without params includes activities in the current week" do
-    query = WeeklyActivitiesQuery.new(Habit.where(name: "Journal"))
-
-    start_date = Time.zone.now.to_date.beginning_of_week
-    end_date = start_date.end_of_week
-    weekly_activities = Activity.where(
-      habit: habits(:journal),
-      performed_at: start_date..end_date
-    )
-
-    assert_equal weekly_activities, query.all.first.activities
+  test "#activities without params returns activities in the current week" do
+    query = WeeklyActivitiesQuery.new(Habit.where(name: "Sleep"))
+    assert_equal [activities(:sleep)], query.activities
   end
 
-  test "with params includes activities in the given week" do
+  test "#habits with params returns all habits" do
+    start_date = Date.parse("2019-01-01").beginning_of_week
+
+    habits = WeeklyActivitiesQuery.new(
+      Habit.where(user: @user),
+      start_date: start_date
+    ).habits
+
+    assert_equal [habits(:journal), habits(:meditate), habits(:sleep)], habits
+  end
+
+  test "#activities with params returns activities in the given week" do
     start_date = Date.parse("2019-01-01").beginning_of_week
 
     habit = habits :journal
@@ -36,6 +39,6 @@ class WeeklyActivitiesQueryTest < ActiveSupport::TestCase
       start_date: start_date
     )
 
-    assert_equal [activity], query.all.first.activities
+    assert_equal [activity], query.activities
   end
 end

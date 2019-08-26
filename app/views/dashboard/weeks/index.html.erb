@@ -24,13 +24,13 @@
       <% end %>
     </div>
 
-    <% @query.all.each do |habit| %>
+    <% @query.habits.each do |habit| %>
       <div class="flex flex-no-wrap">
         <div class="flex-grow font-bold mr-2 self-center">
           <%= habit.name %>
         </div>
         <% (@query.start_date..@query.end_date).each do |date| %>
-          <% activity = habit.activities.find { |act| act.performed_at == date } %>
+          <% activity = @query.activities.find { |act| act.habit == habit && act.performed_at == date } %>
 
           <div data-controller="activities" data-target="activities.grid" class="w-12 h-8 m-1">
             <%= render partial: "dashboard/weeks/activity", locals: { activity: activity, habit: habit, date: date } %>

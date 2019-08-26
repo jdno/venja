@@ -16,10 +16,11 @@ class WeeklyActivitiesQuery
     @end_date ||= start_date.end_of_week
   end
 
-  def all
-    relation
-      .includes(:activities)
-      .order("habits.name ASC")
-      .where(activities: { performed_at: [nil, start_date..end_date] })
+  def habits
+    relation.order("habits.name ASC")
+  end
+
+  def activities
+    Activity.where(habit: habits, performed_at: start_date..end_date)
   end
 end
