@@ -19,6 +19,9 @@ gem "skylight"
 # Track errors on honeybadger.io
 gem "honeybadger", "~> 4.0"
 
+# Monitor the health of the app via a health check endpoint
+gem "okcomputer"
+
 # Transpile app-like JavaScript.
 # Read more: https://github.com/rails/webpacker
 gem "webpacker", "~> 4.0"
