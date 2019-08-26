@@ -4,10 +4,16 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file,
   # see https://guides.rubyonrails.org/routing.html
 
+  constraints Clearance::Constraints::SignedIn.new do
+    root to: "dashboard/weeks#index", as: :signed_in_root
+  end
+
+  constraints Clearance::Constraints::SignedOut.new do
+    root to: "pages#show", id: "home"
+  end
+
   get "/pages/*id" => "pages#show", as: :page, format: false
   get "/track" => "dashboard/weeks#index"
-
-  root to: "pages#show", id: "home"
 
   resources :habits, param: :uuid, except: %i[show] do
     resources :activities, param: :uuid, only: %i[create destroy]
