@@ -43,6 +43,7 @@ en:
   dashboard:
     weeks:
       index:
+        settings: Manage habits
         title: "Week %{week}"
   habits:
     edit:

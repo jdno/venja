@@ -14,7 +14,9 @@ class HabitsTest < ApplicationSystemTestCase
   end
 
   test "creating a Habit" do
-    visit habits_url(as: @user)
+    visit root_url(as: @user)
+    click_on I18n.t("dashboard.weeks.index.settings")
+
     click_on I18n.t("habits.index.new")
 
     fill_in "Name", with: "HabitsTest"
@@ -24,7 +26,9 @@ class HabitsTest < ApplicationSystemTestCase
   end
 
   test "updating a Habit" do
-    visit habits_url(as: @user)
+    visit root_url(as: @user)
+    click_on I18n.t("dashboard.weeks.index.settings")
+
     click_on "Rename", match: :first
 
     fill_in "Name", with: "HabitsTest"
@@ -34,7 +38,9 @@ class HabitsTest < ApplicationSystemTestCase
   end
 
   test "destroying a Habit" do
-    visit habits_url(as: @user)
+    visit root_url(as: @user)
+    click_on I18n.t("dashboard.weeks.index.settings")
+
     page.accept_confirm do
       click_on "Delete", match: :first
     end
