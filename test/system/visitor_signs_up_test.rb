@@ -11,9 +11,9 @@ class VisitorSignsUpTest < ApplicationSystemTestCase
   end
 
   test "by navigating to the page" do
-    visit sign_in_path
+    visit root_path
 
-    click_link I18n.t("sessions.form.sign_up")
+    click_link I18n.t("pages.home.cta")
 
     assert_equal sign_up_path, current_path
   end
