@@ -17,7 +17,7 @@ gem "puma", "~> 4.2"
 gem "skylight"
 
 # Track errors on honeybadger.io
-gem "honeybadger", "~> 4.0"
+gem "honeybadger", "~> 4.5"
 
 # Monitor the health of the app via a health check endpoint
 gem "okcomputer"
