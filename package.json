@@ -21,7 +21,7 @@
     "eslint-plugin-prettier": "^3.1.0",
     "husky": "^3.0.9",
     "precise-commits": "^1.0.2",
-    "prettier": "^1.18.2",
+    "prettier": "^1.19.1",
     "webpack-dev-server": "^3.9.0"
   },
   "husky": {
