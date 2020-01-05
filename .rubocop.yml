@@ -65,11 +65,11 @@ Layout/ClassStructure:
     - protected_methods
     - private_methods
 
-Metrics/BlockLength:
+Layout/LineLength:
   Exclude:
     - config/**/*
 
-Metrics/LineLength:
+Metrics/BlockLength:
   Exclude:
     - config/**/*
 
